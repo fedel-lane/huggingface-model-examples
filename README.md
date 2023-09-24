@@ -1,5 +1,6 @@
                            HuggingFace LLM Examples
 
+<pre>
 Falcon 
     https://huggingface.co/tiiuae/falcon-7b-instruct
   --fine-tune :
@@ -8,6 +9,7 @@ Falcon
     https://huggingface.co/tiiuae/falcon-40b-instruct
   --large --fine-tune :
     https://huggingface.co/tiiuae/falcon-40b
+</pre>
   Example:
 ```
 bash$ python falcon.py --time --debug
