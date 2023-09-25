@@ -70,6 +70,72 @@ No, just sour and bitter. Like my best friends!
 
 ```
 
+##CodeGen
+<pre>
+  Codegen 2.5  : mono="trained on Python" instruct="trained on instruction data")
+  Codegen2 further trained on StarCoder.
+  (codegen25-7B-instruct)[https://huggingface.co/Salesforce/codegen25-7B-instruct]
+  (codegen25-7B-mono)[https://huggingface.co/Salesforce/codegen25-7B-mono]
+  (codegen25-7B-multi)[https://huggingface.co/Salesforce/codegen25-7B-multi]
+
+  Codegen 2   
+  Unlike CodeGen 1. CodeGen2 is capable of infilling, and supports more programming languages.
+  (codegen2-1B)[https://huggingface.co/Salesforce/codegen2-1B]
+  (codegen2-3\_7B")["https://huggingface.co/Salesforce/codegen2-3\_7B]
+  (codegen2-7B)[https://huggingface.co/Salesforce/codegen2-7B]
+  (codegen2-16B)[https://huggingface.co/Salesforce/codegen2-16B]
+
+  Codegen 1 : mono="pre-trained on Python" nl="pre-trained on The Pile")
+  (codegen-350M-mono)[https://huggingface.co/Salesforce/codegen-350M-mono]
+  (codegen-350M-multi)[https://huggingface.co/Salesforce/codegen-350M-multi]
+  (codegen-350M-nl)[https://huggingface.co/Salesforce/codegen-350M-nl]
+  (codegen-2B-mono)[https://huggingface.co/Salesforce/codegen-2B-mono]
+  (codegen-2B-multi)[https://huggingface.co/Salesforce/codegen-2B-multi]
+  (codegen-2B-nl)[https://huggingface.co/Salesforce/codegen-2B-nl]
+  (codegen-6B-mono)[https://huggingface.co/Salesforce/codegen-6B-mono]
+  (codegen-6B-multi)[https://huggingface.co/Salesforce/codegen-6B-multi]
+  (codegen-6B-nl)[https://huggingface.co/Salesforce/codegen-6B-nl]
+  (codegen-16B-mono)[https://huggingface.co/Salesforce/codegen-16B-mono]
+  (codegen-16B-multi)[https://huggingface.co/Salesforce/codegen-16B-multi]
+  (codegen-16B-nl)[https://huggingface.co/Salesforce/codegen-16B-nl]
+
+  (GIT - Codegen 1)[https://github.com/salesforce/CodeGen]
+  (GIT - Codegen 2)[https://github.com/salesforce/CodeGen2]
+  (GIT - The Pile)[https://github.com/EleutherAI/the-pile]
+  (HF - StarCoder) [https://huggingface.co/datasets/bigcode/starcoderdata]
+</pre>
+  Example:
+```
+bash$ python codegen-completion.py --debug "def hello():"
+[INFO] Loading Tokenizer
+[INFO] Loading Model
+[INFO] Tokenizing input code
+[INFO] Generating output code
+[INFO] Generated 1 output candidates
+[INFO] Decoding 128 output tokens
+def hello():
+    return "Hello World!"
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/register')
+def register():
+    return render_template('register.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('user_id', None)
+    return redirect(url_for('index'))
+
+@app
+```
+
 ##VisCPM
 <pre>
     Paint
