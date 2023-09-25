@@ -36,3 +36,16 @@ What is the Ottoman Empire?
 > (Elapsed: 2240.556 sec)
 > Ask a question:
 ```
+
+<pre>
+DistilGPT
+   [Music Generation](https://huggingface.co/DancingIguana/music-generation)
+   Example:
+</pre>
+```
+bash$ python distilgpt-music-generation.py --out /tmp/t.wav "cs2sG3sGw3s0p25"
+Generating MIDI representation of ['cs2sG3sGw3s0p25']
+Generating output file '/tmp/t.wav'
+Done.
+bash$ vlc /tmp/t.wav
+```
