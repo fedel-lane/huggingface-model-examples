@@ -16,7 +16,8 @@ if __name__ == '__main__':
                         help='Use model "facebook/musicgen-small"'),
     parser.add_argument('--large', dest='large_model', action='store_true',
                         help='Use model "facebook/musicgen-large"'),
-    parser.add_argument('--out', dest='out_file', type=argparse.FileType('wb'),
+    parser.add_argument('--out', dest='out_file', required=True,
+                        type=argparse.FileType('wb'),
                         help='Name of WAV file to write')
     parser.add_argument('--sample-rate', dest='sample_rate', default=24000,
                         help='Output sample rate, e.g. 48000 32000 22050. [24000]')

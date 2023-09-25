@@ -25,7 +25,8 @@ The following special symbols are replaced in the strings by the following:
     / = q
 """
         )
-    parser.add_argument('--out', dest='out_file', type=argparse.FileType('wb'),
+    parser.add_argument('--out', dest='out_file', required=True,
+                        type=argparse.FileType('wb'),
                         help='Name of WAV file to write')
     parser.add_argument('--sample-rate', dest='sample_rate', default=24000,
                         help='Output sample rate, e.g. 48000 32000 22050. [24000]')
