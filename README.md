@@ -49,3 +49,25 @@ Generating output file '/tmp/t.wav'
 Done.
 bash$ vlc /tmp/t.wav
 ```
+
+<pre>
+MusicGen
+   [HF](https://huggingface.co/facebook/musicgen-melody)
+   [COLAB](https://colab.research.google.com/github/sanchit-gandhi/notebooks/blob/main/MusicGen.ipynb)
+   Example:
+</pre>
+```
+bash$ python musicgen.py --out /tmp/t.wav "Twangy, tinny country with only a steel guitar and harmonica"
+Generating audio representation of text: Twangy, tinny country with only a steel guitar and harmonica
+Done.
+Generating output file '/tmp/t.wav'
+bash$ vlc /tmp/t.wav
+```
+<pre>
+Bark
+    [HF](https://huggingface.co/suno/bark)
+    [GIT] (https://github.com/suno-ai/bark)
+</pre>
+```
+bash$ python bark.py --small --out /tmp/t.wav "[cough] Nice. Very nice. [laughs]"      
+```
