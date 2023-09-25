@@ -1,14 +1,11 @@
                            HuggingFace LLM Examples
 
+##Falcon 
 <pre>
-Falcon 
-    https://huggingface.co/tiiuae/falcon-7b-instruct
-  --fine-tune :
-    https://huggingface.co/tiiuae/falcon-7b
-  --large :
-    https://huggingface.co/tiiuae/falcon-40b-instruct
-  --large --fine-tune :
-    https://huggingface.co/tiiuae/falcon-40b
+  (default)[https://huggingface.co/tiiuae/falcon-7b-instruct]
+  (--fine-tune)[https://huggingface.co/tiiuae/falcon-7b]
+  (--large)[https://huggingface.co/tiiuae/falcon-40b-instruct]
+  (--large --fine-tune)[https://huggingface.co/tiiuae/falcon-40b]
 </pre>
   Example:
 ```
@@ -37,8 +34,61 @@ What is the Ottoman Empire?
 > Ask a question:
 ```
 
+##Flan-T5 
 <pre>
-DistilGPT
+  (default)[https://huggingface.co/google/flan-t5-base]
+  (--small)[https://huggingface.co/google/flan-t5-small]
+  (--large)[https://huggingface.co/google/flan-t5-large]
+  (--xl)[https://huggingface.co/google/flan-t5-xl]
+  (--xxl)[https://huggingface.co/google/flan-t5-xxl]
+</pre>
+  Example:
+```
+bash$ python flan-t5.py
+Be warned that I have no memory.
+> Ask a question:
+> What is a guava?
+<pad> a fruit</s>
+> Ask a question:
+> What recipes require gauva?
+<pad> saafi saafi</s>
+
+```
+
+##FastChat
+<pre>
+  (HF)[https://huggingface.co/lmsys/fastchat-t5-3b-v1.0]
+  (GIT)[https://github.com/lm-sys/FastChat#FastChat-T5]
+</pre>
+  Example:
+```
+bash$ python fastchat.py
+> Hello! We talk about things, yes?
+Do youo like guava?
+> fer  sour  drinks  like  lemonade  or  rootbeer.  Do  you  like  sweet  drinks  like  ice  cream  or  frozen  yogurt?
+No, just sour and bitter. Like my best friends!
+
+```
+
+##VisCPM
+<pre>
+    Paint
+      (HF)[https://huggingface.co/openbmb/VisCPM-Paint]
+</pre>
+  Example:
+```
+bash$ python viscpm-paint.py --out /tmp/t.png A photo of dogs playing poker
+  Loading tokenizer
+  Loading encoder
+  Loading diffusion pipeline
+  Generating image from:
+  A photo of dogs playing poker
+  Generated 1 images
+  Saving image to /tmp/t.png
+```
+
+##DistilGPT
+<pre>
    [Music Generation](https://huggingface.co/DancingIguana/music-generation)
 </pre>
    Example:
@@ -50,8 +100,8 @@ Done.
 bash$ vlc /tmp/t.wav
 ```
 
+##MusicGen
 <pre>
-MusicGen
    [HF](https://huggingface.co/facebook/musicgen-melody)
    [COLAB](https://colab.research.google.com/github/sanchit-gandhi/notebooks/blob/main/MusicGen.ipynb)
 </pre>
@@ -63,8 +113,8 @@ Generating output file '/tmp/t.wav'
 Done.
 bash$ vlc /tmp/t.wav
 ```
+##Bark
 <pre>
-Bark
     [HF](https://huggingface.co/suno/bark)
     [GIT] (https://github.com/suno-ai/bark)
 </pre>
