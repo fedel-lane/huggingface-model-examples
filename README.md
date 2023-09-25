@@ -135,6 +135,28 @@ def logout():
 
 @app
 ```
+```
+bash$ python codegen-infill.py --debug --time  "def hello(): 
+>     <mask_1>
+>     return name
+> "
+[INFO] Using transformed code:
+	def hello():
+    <mask_1>
+    return name
+<|endoftext|><sep><mask_1>
+[INFO] Loading Tokenizer
+[TIME] Model instantiation: 4.560 sec
+[INFO] Loading Model
+[TIME] Model instantiation: 176.072 sec
+[INFO] Tokenizing input code
+[INFO] Generating output code
+[INFO] Generated 1 output candidates
+[INFO] Decoding 25 output tokens
+@app.route('/')
+<eom><|endoftext|>
+
+```
 
 ##VisCPM
 <pre>
