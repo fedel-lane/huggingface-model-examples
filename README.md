@@ -40,8 +40,8 @@ What is the Ottoman Empire?
 <pre>
 DistilGPT
    [Music Generation](https://huggingface.co/DancingIguana/music-generation)
-   Example:
 </pre>
+   Example:
 ```
 bash$ python distilgpt-music-generation.py --out /tmp/t.wav "cs2sG3sGw3s0p25"
 Generating MIDI representation of ['cs2sG3sGw3s0p25']
@@ -54,13 +54,13 @@ bash$ vlc /tmp/t.wav
 MusicGen
    [HF](https://huggingface.co/facebook/musicgen-melody)
    [COLAB](https://colab.research.google.com/github/sanchit-gandhi/notebooks/blob/main/MusicGen.ipynb)
-   Example:
 </pre>
+   Example:
 ```
 bash$ python musicgen.py --out /tmp/t.wav "Twangy, tinny country with only a steel guitar and harmonica"
 Generating audio representation of text: Twangy, tinny country with only a steel guitar and harmonica
-Done.
 Generating output file '/tmp/t.wav'
+Done.
 bash$ vlc /tmp/t.wav
 ```
 <pre>
@@ -68,6 +68,10 @@ Bark
     [HF](https://huggingface.co/suno/bark)
     [GIT] (https://github.com/suno-ai/bark)
 </pre>
+   Example:
 ```
 bash$ python bark.py --small --out /tmp/t.wav "[cough] Nice. Very nice. [laughs]"      
+Generating audio representation of text: [cough] Nice. Very nice. [laughs]
+Generating output file '/tmp/t.wav'
+Done.
 ```

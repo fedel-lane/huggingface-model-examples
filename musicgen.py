@@ -58,5 +58,5 @@ if __name__ == '__main__':
 
     print("Generating output file '%s'" % args.out_file.name)
     # sampling_rate = model.config.audio_encoder.sampling_rate
-    scipy.io.wavfile.write(args.out_file, rate=args.sampling_rate, data=audio_data)
+    scipy.io.wavfile.write(args.out_file, rate=args.sample_rate, data=audio_data)
     print("Done.")
