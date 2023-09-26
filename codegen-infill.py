@@ -42,14 +42,18 @@ we construct an input to the model by
     Append <sep> token to indicate the boundary
     Insert another <mask_1> to indicate which mask we want to infill.
     """ )           
+    parser.add_argument('--model', dest='model', default = "codegen25-7b-multi",
+                    help='codegen2-7b-mono codegen2-16n codegen2-1B-multi cdegen25-7b-instruct [codegen25-7b-multi]')
     parser.add_argument('--in-file', dest='in_file', 
-                        type=argparse.FileType('r'),
-                        help='File to read input from. Must have <mask_1>')
+                    type=argparse.FileType('r'),
+                    help='File to read input from. Must have <mask_1>')
     parser.add_argument('--out-file', dest='out_file',
                     type=argparse.FileType('w'),
                     help='File to write output to')
-    parser.add_argument('--model', dest='model', default = "codegen25-7b-multi",
-                        help='codegen2-7b-mono codegen2-16n codegen2-1B-multi cdegen25-7b-instruct [codegen25-7b-multi]')
+    parser.add_argument('--prefix', dest='prefix', type=str,
+                    help='Specify completion as PREFIX + SUFFIX'),
+    parser.add_argument('--suffix', dest='suffix', type=str,
+                    help='Specify completion as PREFIX + SUFFIX'),
     parser.add_argument('--debug', dest='debug', action='store_true',
                     help='Enable debug output')
     parser.add_argument('--time', dest='time', action='store_true',
@@ -75,6 +79,9 @@ if __name__ == '__main__':
     code = ""
     if args.in_file:
         code = args.in_file.read()
+    elif args.prefix and args.suffix:
+        code =prefix + MASK1_TOK + suffix
+
     code = code + " ".join(args.code)
 
     if len(code) <= 1:
@@ -87,11 +94,11 @@ if __name__ == '__main__':
         code = code + MASK1_TOK
 
     text = code + EOT_TOK + SEP_TOK + MASK1_TOK
-    if args.debug: print("[INFO] Using transformed code:\n\t%s" % text)
+    if args.debug: print("[INFO] Using transformed code:\n%s" % text)
 
     if args.debug: print("[INFO] Loading Tokenizer")
     with Timer() as t:
-        tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+        tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=False)
     if args.time: print("[TIME] Model instantiation: %.03f sec" % t.interval)
 
     if args.debug: print("[INFO] Loading Model")
@@ -105,15 +112,27 @@ if __name__ == '__main__':
     input_ids = tokenizer(text, return_tensors="pt").input_ids
 
     if args.debug: print("[INFO] Generating output code")
-    generated_ids = model.generate(input_ids, max_length=128)
+    #generated_ids = model.generate(input_ids, max_length=128)
+
+    #pad_tok_id = tokenizer(SEP_TOK, return_tensors="pt").input_ids[0]
+    #print("PAD TOKEN ID: %d" % pad_tok_id)
+    #mask_tok_id = tokenizer(MASK1_TOK, return_tensors="pt").input_ids[0]
+    #print("MASK TOKEN ID: %d" % mask_tok_id)
+    generated_ids = model.generate(input_ids, min_length=32,
+            max_length=2048,
+            #attention_mask=MASK1_TOK, #pad_token_id=SEP_TOK
+            pad_token_id=tokenizer.eos_token_id
+            )
 
     if args.debug: print("[INFO] Generated %d output candidates" % len(generated_ids))
     if args.debug: print("[INFO] Decoding %d output tokens" % len(generated_ids[0]))
     # FIXME: Look for END_TOK
     output = tokenizer.decode(generated_ids[0], skip_special_tokens=False)[len(text):]
+    output_code = output.split(END_TOK)[0]
+
 
     if args.out_file:
-        args.out_file.write(output)
+        args.out_file.write(output_code)
     else:
-        print(output)
+        print(output_code)
 

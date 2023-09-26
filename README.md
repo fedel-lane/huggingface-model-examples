@@ -136,26 +136,34 @@ def logout():
 @app
 ```
 ```
-bash$ python codegen-infill.py --debug --time  "def hello(): 
->     <mask_1>
->     return name
-> "
-[INFO] Using transformed code:
-	def hello():
-    <mask_1>
-    return name
-<|endoftext|><sep><mask_1>
+s> python codegen.py --time --deug --model codegen-350M-nl "Create a function called num_in_str() to check whether a string contains a number."
 [INFO] Loading Tokenizer
-[TIME] Model instantiation: 4.560 sec
+[TIME] Model instantiation: 3.935 sec
 [INFO] Loading Model
-[TIME] Model instantiation: 176.072 sec
+[TIME] Model instantiation: 21.211 sec
 [INFO] Tokenizing input code
 [INFO] Generating output code
 [INFO] Generated 1 output candidates
-[INFO] Decoding 25 output tokens
-@app.route('/')
-<eom><|endoftext|>
+[INFO] Decoding 2048 output tokens
+import sys
+import re
+import os
+import time
+def num_in_str(str):
+    """
+    Check whether a string contains a number.
+    """
+    if re.match(r'\d+', str):
+        return True
+    else:
+        return False
 
+def main():
+    num_in_str('123')
+
+if __name__ == '__main__':
+    main()
+# (repeats until max_tokens is reached)
 ```
 
 ##VisCPM
