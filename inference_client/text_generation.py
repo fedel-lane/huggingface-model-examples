@@ -30,10 +30,6 @@ def get_args():
                     help='HuggingFace API Token')
     parser.add_argument('--model', dest='model', default=None, required=False,
                     help='Override the default model for the text_generation task')
-    #parser.add_argument('--prompt', dest='prompt', default=None, required=False,
-    #                help='Override the default prompt')
-    parser.add_argument('--source', dest='source', default=None, required=False,
-                    help='Path to ASCII document to use as input')
     parser.add_argument('--no-sample', dest='sample', action='store_false',
                     help='Disable decoding strategies like top-p top-k etc')
     parser.add_argument('--max-new-tokens', dest='max_new_tokens', default=1250,
@@ -120,20 +116,20 @@ def get_token(args):
         os.environ["HUGGINGFACEHUB_API_TOKEN"] = api_key
     return api_key
 
-def get_prompt(args):
-    # unused
-    return args.prompt
+def enforce_loaded_model(args):
+    # check model
+    if args.model:
+        stat = InferenceClient(token=token).get_model_status(args.model)
+        if not stat.loaded:
+            print("Unable to access model %s: not loaded" % args.model)
+            print(str(stat))
+            sys.exit()
 
 # ----------------------------------------------------------------------
 if __name__ == '__main__':
     args = get_args()
     token = get_token(args)
-
-    ## check model
-    #if args.model:
-    #    stat = get_model_status(args.model)
-    #    # FIXME: simply check
-    #    print(str(get_model_status(args.model)))
+    enforce_loaded_model(args)
 
     text_input = ' '.join(args.text_input)
     if len(args.text_input) < 1 and args.source:
