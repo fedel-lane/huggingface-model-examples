@@ -137,7 +137,7 @@ if __name__ == '__main__':
 
             try:
                 with Timer() as t:
-                    output = model.generate(inputs, min_length=args.min_length, max_length=args.max_length, temperature=args.temperature)
+                    output = model.generate(inputs, min_length=args.min_length, max_length=args.max_length, temperature=args.temperature, num_return_sequences=1)
                     result = tokenizer.decode(output[0])
                     result = result.replace('<pad>', '')
                     result = result.split('</s>')[0]
